@@ -14,8 +14,6 @@
 #include <pcl/filters/passthrough.h>
 #include <pcl/filters/crop_box.h>
 #include <pcl_ros/transforms.h>
-#include <message_filters/subscriber.h>
-#include <message_filters/time_synchronizer.h>
 
 ros::Publisher pub;
 double x, y, z, roll, pitch, yaw;
@@ -40,9 +38,9 @@ cloud_cb(const sensor_msgs::PointCloud2 &cloud_msg) {
 int
 main(int argc, char **argv) {
     // Initialize ROS
-    ros::init(argc, argv, "cloud_fusion");
+    ros::init(argc, argv, "pcl_transform");
     ros::NodeHandle nh("~");
-    ROS_INFO("cloud fusion started");
+    ROS_INFO("Transform filter tools initialized...");
 
     // parameters
     nh.param<double>("x", x, 0.0);
@@ -64,12 +62,6 @@ main(int argc, char **argv) {
     trans.block<3, 3>(0, 0) = rot;
 
     std::cout << "Transform matrix: \n" << trans << std::endl;
-
-    message_filters::Subscriber<Image> image_sub(nh, "image", 1);
-    message_filters::Subscriber<CameraInfo> info_sub(nh, "camera_info", 1);
-    TimeSynchronizer<Image, CameraInfo> sync(image_sub, info_sub, 10);
-    sync.registerCallback(boost::bind(&callback, _1, _2))
-
 
     // Create a ROS subscriber for the input point cloud
     ros::Subscriber sub = nh.subscribe("input", 1, cloud_cb);
