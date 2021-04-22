@@ -1,0 +1,15 @@
+<launch>
+    <node pkg="pcl_tools" type="box_filter" name="box_filter" args="" output="screen">
+        <remap from="~input" to="/velodyne_points"/>
+        <remap from="~output" to="/velodyne_points/noego"/>
+        <rosparam>
+            x_min: -15
+            x_max: 0.4
+            y_min: -1.9
+            y_max: 1.9
+            z_min: -0.5
+            z_max: 1
+            negative: True
+        </rosparam>
+    </node>
+</launch>

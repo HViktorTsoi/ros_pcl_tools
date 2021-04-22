@@ -1,0 +1,13 @@
+<node pkg="pcl_tools" type="transform" name="transform" args="" output="screen">
+    <remap from="~input" to="/velodyne_points"/>
+    <remap from="~output" to="/velodyne_points/transform"/>
+    <!--  transform `~input` using the following parameter  -->
+    <rosparam>
+        x: -1.32
+        y: 0.31
+        z: -0.14
+        roll: 0.0
+        pitch: 0.0
+        yaw: 0.0
+    </rosparam>
+</node>

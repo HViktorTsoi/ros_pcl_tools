@@ -3,6 +3,7 @@
         <remap from="~cloud_1" to="/RS161/rslidar_points"/>
         <remap from="~cloud_2" to="/RS162/rslidar_points"/>
         <remap from="~output" to="/rslidar_points"/>
+        <!--  transform `~cloud2` to `~cloud1` frame  -->
         <rosparam>
             x: -1.60463711
             y: 0.60510427
