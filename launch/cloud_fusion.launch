@@ -1,0 +1,15 @@
+<launch>
+    <node pkg="pcl_tools" type="cloud_fusion" name="cloud_fusion" args="" output="screen">
+        <remap from="~cloud_1" to="/RS161/rslidar_points"/>
+        <remap from="~cloud_2" to="/RS162/rslidar_points"/>
+        <remap from="~output" to="/rslidar_points"/>
+        <rosparam>
+            x: -1.60463711
+            y: 0.60510427
+            z: 0.04885387
+            roll: 0.02076529
+            pitch: -0.02148611
+            yaw:  3.10527797
+        </rosparam>
+    </node>
+</launch>
